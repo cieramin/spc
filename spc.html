@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SPC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.0.min.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/zoom.js"></script>
+    <script src="js/slide.js" defer></script>
+
+    <style>
+        /*reset*/
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        ul,
+        ol,
+        li {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        /*header*/
+        header {
+            width: 1800px;
+            height: 105px;
+            position: relative;
+        }
+
+        #logo {
+            position: absolute;
+            width: 92.5px;
+            height: 30px;
+            margin: 30px 0 0 40px;
+        }
+
+        #nav {
+            width: 1000px;
+            height: 105px;
+            position: absolute;
+            left: 160px;
+            margin: 0 0 0 220px;
+        }
+
+        #nav::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            /* 가운데 정렬 */
+            align-items: stretch;
+            /* 수직 중앙 정렬도 가능 */
+            width: 1000px;
+            height: 105px;
+        }
+
+        .menu>li {
+            height: 100%;
+            width: 160px;
+            padding: 30px 15px;
+            /* 좌우 간격만 주면 됨 */
+            line-height: 40px;
+            background: #ffffff;
+            text-align: center;
+            position: relative;
+        }
+
+        .first>a {
+            font-size: 22px;
+        }
+
+        .menu>li>a {
+            display: block;
+        }
+
+        .menu>li:hover>a {
+            color: #000;
+        }
+
+        .sub {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: max-content;
+            background-color: white;
+            padding: 10px;
+            display: none;
+            z-index: 999;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sub>li {
+            white-space: nowrap;
+            padding: 5px 10px;
+        }
+
+        .sub>li a {
+            display: block;
+            padding: 5px 10px;
+        }
+
+
+        .sub>li:hover {
+            display: block;
+        }
+
+        .sub li a.active {
+            background-color: #f2f2f2;
+            border-radius: 20px;
+            padding: 5px 12px;
+            display: inline-block;
+        }
+
+        #careers {
+            width: 100px;
+            height: 30px;
+            position: absolute;
+            margin: 38px 0 0 1650px;
+        }
+
+        #login {
+            width: 33px;
+            height: 33px;
+            margin: 35px 0 0 1780px;
+            position: absolute;
+            z-index: 999;
+        }
+
+        #login .btn {
+    width: 33px;
+    height: 33px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: transparent;
+    border: none;
+}
+
+#login .btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+        /*up*/
+        #all {
+            width: 1830px;
+            height: 2530px;
+        }
+
+        #up {
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        #slide,
+        #two {
+            flex: 0 0 100%;
+        }
+
+        #slide {
+            width: 1800px;
+            height: 460px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            margin:0 auto;
+            left: 30px;
+        }
+
+        #slide ul {
+            display:flex;
+    transition: transform 0.5s ease;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+        }
+
+        #slide li {
+    flex: 0 0 100%;
+}
+
+        #slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        #slideText {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 20%;
+    z-index: 10;
+    color: #fff;
+}
+
+        #slide p,
+        #slide h3 {
+            margin-top: 70px;
+            padding: 15px 15px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            text-align: center;
+            font-family: 'Rubik', sans-serif;
+            z-index: 10;
+        }
+
+        #slide p {
+            font-size: 40px;
+            font-weight: bold;
+            line-height: 1;
+            top: 20%;
+        }
+
+        #slide h3 {
+            font-size: 75px;
+            font-weight: bold;
+            line-height: 1;
+            margin-top: 110px;
+        }
+
+       #prev, #next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color:transparent;
+    color: white;
+    border: none;
+    font-size: 40px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 20;
+}
+
+#prev {
+    left: 20px;
+}  
+
+#next {
+    right: 20px;
+}
+
+
+        /*two*/
+        #two {
+            width: 1800px;
+            height: 500px;
+            display: flex;
+            align-self: flex-start;
+            gap: 20px;
+            left: 30px;
+            position: relative;
+        }
+
+        #history,
+        #happy {
+            position: relative;
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border-radius: 20px;
+        }
+
+        #history p,
+        #happy p {
+            font-size: 25px;
+            color: #fff;
+            font-weight: bold;
+            position: absolute;
+            line-height: 1;
+            top: 20px;
+            left: 20px;
+            z-index: 2;
+            font-family: 'Rubik', 'Pretendard', sans-serif;
+        }
+
+        #history img,
+        #happy img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            border-radius: 20px;
+            transition: transform 0.5s ease, border-radius 0.5s ease;
+        }
+
+        #history {
+            flex: 0 0 430px;
+        }
+
+        #happy {
+            flex: 0 0 1370px;
+        }
+
+        /*down*/
+        #big {
+            display: flex;
+            gap: 20px;
+            height: 950px;
+            max-width: 1800px;
+            margin-left: 30px;
+            margin-top: 30px;
+            align-items: flex-start;
+        }
+
+        #eat {
+            flex: 0 0 950px;
+            height: 950px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+
+        }
+
+        #eat img {
+            width: 950px;
+            height: 950px;
+            object-fit: cover;
+            z-index: 0;
+            border-radius: 20px;
+            transition: transform 0.5s ease, border-radius 0.5s ease;
+        }
+
+        #eat h3 {
+            padding: 15px 20px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            text-align: center;
+            font-family: 'Rubik', sans-serif;
+            font-size: 120px;
+            top: 140px;
+            z-index: 2;
+        }
+
+        #store {
+            flex: 1 1 auto;
+            display: grid;
+            height: 950px;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 12px;
+            border-radius: 20px;
+        }
+
+        #store>div {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+
+        }
+
+        #store img {
+            width: 410px;
+            height: 460px;
+            object-fit: cover;
+            z-index: 0;
+
+            border-radius: 20px;
+            transition: transform 0.5s ease, border-radius 0.5s ease;
+        }
+
+        #brand {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #brand h3,
+        #brand p {
+            margin-top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            position: absolute;
+            font-family: 'Rubik', sans-serif;
+        }
+
+        #brand h3 {
+            font-size: 50px;
+            font-weight: bold;
+            color: #000000;
+            top: 80px;
+        }
+
+        #brand p {
+            font-size: 20px;
+            color: #00000080;
+            top: 150px;
+        }
+
+        #baskin p,
+        #paris p,
+        #dunkin p {
+            font-size: 25px;
+            color: #fff;
+            font-weight: bold;
+            position: absolute;
+            line-height: 1;
+            top: 20px;
+            left: 20px;
+            z-index: 2;
+            font-family: 'Rubik', 'Pretendard', sans-serif;
+        }
+
+        /*spc*/
+        #spc {
+            display: flex;
+            gap: 20px;
+            max-width: 1800px;
+            align-items: flex-start;
+            margin-top: 30px;
+            margin-left: 30px;
+
+        }
+
+        #best,
+        #great {
+            position: relative;
+            flex: 1;
+            height: 470px;
+            width: 880px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            border-radius: 20px;
+        }
+
+        #best {
+            padding: 60px 30px 100px 30px;
+        }
+
+        #great {
+            padding: 40px 30px 150px 70px;
+        }
+
+        #best img,
+        #great img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            border-radius: 20px;
+            transition: transform 0.5s ease, border-radius 0.5s ease;
+        }
+
+        #best h3,
+        #best p,
+        #great h3,
+        #great p {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            /* 텍스트는 z-index 2로 더 위 */
+            color: white;
+        }
+
+        #best h3,
+        #great h3 {
+            position: relative;
+            z-index: 1;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #best p,
+        #great p {
+            position: relative;
+            z-index: 1;
+            color: white;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        #history img,
+        #happy img,
+        #eat img,
+        #store img,
+        #best img,
+        #great img {
+            transition: transform 0.3s ease;
+            will-change: transform;
+        }
+
+        #history:hover img,
+        #happy:hover img,
+        #eat:hover img,
+        #store:hover img,
+        #best:hover img,
+        #great:hover img {
+            transform: scale(1.05);
+            border-radius: 20px;
+        }
+
+        /*footer*/
+        footer {
+            width: 100%;
+            height: 450px;
+            background-color: #f5f5f5;
+            position: relative;
+        }
+
+        #box {
+            width: 1780px;
+            height: 380px;
+            margin: 50px 0 0 40px;
+            position: absolute;
+        }
+
+        /*top-left*/
+        #top {
+            width: 1700px;
+            height: 260px;
+            position: relative;
+            padding: 0;
+            margin: 0;
+        }
+
+        #top>#left {
+            width: 450px;
+            height: 200px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #logo2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 92.5px;
+            height: 30px;
+        }
+
+        #left>p {
+            color: #00000080;
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 55px 0 0 15px;
+        }
+
+        #ftl,
+        #ftl2 {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            width: 100%;
+            padding: 10px 15px;
+            left: 0;
+        }
+
+        #ftl>li,
+        #ftl2>li {
+            line-height: 10px;
+        }
+
+        #ftl a,
+        #ftl2 a {
+            font-size: 14px;
+            font-family: 'Rubik', 'Pretendard', sans-serif;
+        }
+
+        /*top-right*/
+        #top>#right {
+            width: max-content;
+            height: auto;
+            position: absolute;
+            align-items: flex-end;
+            display: flex;
+            flex-direction: column;
+            right: -80px;
+            top: 0;
+        }
+
+        a {
+            text-decoration: none;
+            font-family: 'Rubik', 'Pretendard', sans-serif;
+        }
+
+        .ftr {
+            display: flex;
+            justify-content: center;
+            /* 가운데 정렬 */
+            align-items: stretch;
+            /* 수직 중앙 정렬도 가능 */
+            width: 100%;
+            padding: 10px 0;
+
+        }
+
+        .ftr>li {
+            height: 100%;
+            width: auto;
+            text-align: center;
+            position: relative;
+            margin: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .firstt>a {
+            font-size: 19px;
+            color: #000000;
+        }
+
+        .ftr>li>a {
+            display: block;
+        }
+
+        .subb {
+            position: static;
+            top: 100%;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 8px;
+            gap: 8px;
+        }
+
+        .subb>li a {
+            font-size: 16px;
+            color: #00000080;
+        }
+
+        /*bottom-left*/
+        #bottom {
+            width: 1700px;
+            height: 80px;
+            position: absolute;
+            top: 270px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            box-sizing: border-box;
+        }
+
+        #bottom>#leftt {
+            width: 300px;
+            height: 80px;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .family {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .family-btn {
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            font-size: 18px;
+            text-align: center;
+            padding: 0;
+            font-weight: bold;
+            display: inline-flex;   
+            align-items: center;       
+            justify-content: center;    
+            line-height: 32px;        
+        }
+
+        .family-btn:hover {
+            background-color: #eee;
+        }
+
+        .family-btn::after {
+            display: none !important;
+        }
+
+        #leftt h3 {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 0 10px;
+            margin: 0;
+            font-family: 'Rubik', 'Pretendard', sans-serif;
+            letter-spacing: normal;
+            color: #000;
+            line-height: 32px; 
+        }
+
+        #leftt p {
+            font-size: 14px;
+            font-weight: bold;
+            color: #0000004D;
+            margin: 0;
+            padding: 0 10px;
+            font-family: 'Rubik', 'Pretendard', sans-serif;
+            letter-spacing: normal;
+            word-break: keep-all;
+        }
+
+        /*bottom-right*/
+        #bottom>#rightt {
+            width: 255px;
+            height: 80px;
+            position: absolute;
+            right: -80px;
+            bottom: 0;
+            box-sizing: border-box;
+        }
+
+        #rightt ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            height: 70px;
+            align-items: flex-end;
+        }
+
+        #rightt li {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+
+        }
+
+        #rightt li a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+
+        }
+
+        #rightt li img {
+            opacity: 1;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: relative;
+            top: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--헤더-->
+    <header>
+        <div id="logo">
+            <img src="img/logo.svg" alt="logo">
+        </div>
+
+        <nav id="nav">
+            <ul class="menu">
+
+                <li class="first"><a href="#">ABOUT SPC</a>
+                    <ul class="sub">
+                        <li><a href="#">SPC WAY</a></li>
+                        <li><a href="#">R & D</a></li>
+                        <li><a href="#">관계사</a></li>
+                        <li><a href="#">글로벌</a></li>
+                        <li><a href="#">CI소개</a></li>
+                    </ul>
+                </li>
+
+                <li class="first"><a href="#">HISTORY</a>
+                    <ul class="sub">
+                        <li><a href="#">헤리티지</a></li>
+                        <li><a href="#">연혁</a></li>
+                    </ul>
+                </li>
+
+                <li class="first"><a href="#">BRAND</a>
+                    <ul class="sub">
+                        <li><a href="#">베이커리</a></li>
+                        <li><a href="#">디저트</a></li>
+                        <li><a href="#">외식/다이닝</a></li>
+                        <li><a href="#">커피/음료</a></li>
+                        <li><a href="#">유통/서비스</a></li>
+                    </ul>
+                </li>
+
+                <li class="first"><a href="#">SPC NOW</a>
+                    <ul class="sub">
+                        <li><a href="#">뉴스</a></li>
+                        <li><a href="#">매거진</a></li>
+                        <li><a href="#">SNS</a></li>
+                    </ul>
+                </li>
+
+                <li class="first"><a href="#">ESG</a>
+                    <ul class="sub">
+                        <li><a href="#">ESG경영</a></li>
+                        <li><a href="#">정도경영</a></li>
+                        <li><a href="#">안전경영</a></li>
+                        <li><a href="#">행복한 재단</a></li>
+                        <li><a href="#">사회공헌</a></li>
+                    </ul>
+                </li>
+
+                <li class="first"><a href="#">SUPPORT</a>
+                    <ul class="sub">
+                        <li><a href="#">가맹문의</a></li>
+                        <li><a href="#">위치 안내</a></li>
+                        <li><a href="#">문의하기</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <div id="careers">
+            <a href="#"><img src="img/careers.PNG" alt="careers"></a>
+        </div>
+
+        <div id="login">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <img src="img/login.png" alt="login">
+            </button>
+            <ul class="dropdown-menu">
+                <li th:if="${session.loginMember == null}"><a class="dropdown-item" href="/member/join">회원가입</a></li>
+                <lith:if= th:if="${session.loginMember == null}"><a class="dropdown-item" href="/member/login">로그인</a>
+                    </lith:if="${session.loginMember==null}">
+                <li th:if="${session.loginMember != null}"><a class="dropdown-item" href="/member/logout">로그아웃</a></li>
+            </ul>
+        </div>
+
+    </header>
+
+    <div id="all">
+        <!--up-->
+        <div id="up">
+            <div id="slide">
+                <div id="slideText">
+                    <p>일상을 맛있게 행복하게</p>
+                    <h3>Happiness in every bite</h3>
+                </div>
+                <ul id="slidee">
+                    <li><img src="img/slide1.webp" alt="slide"></li>
+                    <li><img src="img/slide2.webp" alt="slide"></li>
+                    <li><img src="img/slide3.webp" alt="slide"></li>
+                </ul>
+                <button id="prev">&#10094;</button> 
+                <button id="next">&#10095;</button> 
+            </div>
+
+            <div id="two">
+                <div id="history">
+                    <p>헤리티지</p>
+                    <img src="img/history.webp" alt="history" class="hover-zoom">
+                </div>
+                <div id="happy">
+                    <p>해피포인트</p>
+                    <img src="img/happy.png" alt="happy" class="hover-zoom">
+                </div>
+            </div>
+        </div>
+
+        <div id="down">
+            <div id="big">
+                <div id="eat">
+                    <h3>먹고<br>마시고<br>즐기자</h3>
+                    <img src="img/eat.webp" alt="eat" class="hover-zoom">
+                </div>
+
+                <div id="store">
+                    <div id="brand">
+                        <h3>BRAND</h3>
+                        <p>SPC그룹의 다양한 브랜드를 만나보세요.</p>
+                    </div>
+
+                    <div id="baskin">
+                        <p>배스킨라빈스</p>
+                        <img src="img/bakin.jpg" alt="baskin" class="hover-zoom">
+                    </div>
+                    <div id="paris">
+                        <p>파리크라상</p>
+                        <img src="img/paris.jpg" alt="paris" class="hover-zoom">
+                    </div>
+                    <div id="dunkin">
+                        <p>던킨</p>
+                        <img src="img/dunkin2.png" alt="dunkin" class="hover-zoom">
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="spc">
+                <div id="best">
+                    <h3>최고의 품질과 고객중심,</h3>
+                    <h3>창의적 도전으로 세상을 행복하게 한다.</h3>
+                    <p>경영철학은 최고경영자의 신념이자 우리 그룹의 존재 이유입니다.</p>
+                    <p>SPC그룹은 창의적 도전정신을 바탕으로</p>
+                    <p>맛있고 건강한 제품을 통해 언제나 고객의 행복과 함께하겠습니다.</p>
+                    <img src="img/body1.webp" alt="best" class="hover-zoom">
+                </div>
+
+                <div id="great">
+                    <h3>GREAT FOOD COMPANY</h3>
+                    <p>SPC그룹의 비전은 전 세계인에게 존경받고 지속 성장 가능한</p>
+                    <p>경쟁력을 갖춘 글로벌 종합식품기업이 되는 것입니다.</p>
+                    <img src="img/body2.webp" alt="great" class="hover-zoom">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div id="box">
+            <div id="top">
+                <div id="left">
+                    <div id="logo2">
+                        <img src="./img/logo.svg" alt="logo">
+                    </div>
+
+                    <p>서울시 서초구 양재동 남부순환로 2620 (양재동 11-149)</p>
+
+                    <ul id="ftl">
+                        <li><a href="#">개인정보처리방침</a></li>
+                        <li><a href="#">|</a></li>
+                        <li><a href="#">이메일수집 거부</a></li>
+                        <li><a href="#">|</a></li>
+                        <li><a href="#">거래희망사전등록</a></li>
+                        <li><a href="#">|</a></li>
+                    </ul>
+                    <ul id="ftl2">
+                        <li><a href="#">고정형 영상정보처리기기 운영관리 방침</a></li>
+                        <li><a href="#">|</a></li>
+                        <li><a href="#">공지사항</a></li>
+                    </ul>
+                </div>
+
+
+                <div id="right">
+                    <ul class="ftr">
+                        <li class="firstt"><a href="#">ABOUT SPC</a>
+                            <ul class="subb">
+                                <li><a href="#">SPC WAY</a></li>
+                                <li><a href="#">R & D</a></li>
+                                <li><a href="#">관계사</a></li>
+                                <li><a href="#">글로벌</a></li>
+                                <li><a href="#">CI소개</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="firstt"><a href="#">HISTORY</a>
+                            <ul class="subb">
+                                <li><a href="#">헤리티지</a></li>
+                                <li><a href="#">연혁</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="firstt"><a href="#">BRAND</a>
+                            <ul class="subb">
+                                <li><a href="#">베이커리</a></li>
+                                <li><a href="#">디저트</a></li>
+                                <li><a href="#">외식/다이닝</a></li>
+                                <li><a href="#">커피/음료</a></li>
+                                <li><a href="#">유통/서비스</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="firstt"><a href="#">SPC NOW</a>
+                            <ul class="subb">
+                                <li><a href="#">뉴스</a></li>
+                                <li><a href="#">매거진</a></li>
+                                <li><a href="#">SNS</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="firstt"><a href="#">ESG</a>
+                            <ul class="subb">
+                                <li><a href="#">ESG경영</a></li>
+                                <li><a href="#">정도경영</a></li>
+                                <li><a href="#">안전경영</a></li>
+                                <li><a href="#">행복한 재단</a></li>
+                                <li><a href="#">사회공헌</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="firstt"><a href="#">SUPPORT</a>
+                            <ul class="subb">
+                                <li><a href="#">가맹문의</a></li>
+                                <li><a href="#">위치 안내</a></li>
+                                <li><a href="#">문의하기</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="bottom">
+                <div id="leftt">
+                    <div class="family">
+                        <h3>FAMILY SITE</h3>
+                        <div class="dropup-center dropup">
+                            <button class="family-btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                &#43;
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">배스킨라빈스</a></li>
+                                <li><a class="dropdown-item" href="#">던킨</a></li>
+                                <li><a class="dropdown-item" href="#">파리크라상</a></li>
+                                <li><a class="dropdown-item" href="#">해피포인트</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <p>Copyright SPC All rights reserved.</p>
+                </div>
+
+
+                <div id="rightt">
+                    <ul>
+                        <li><a href="#"><img src="img/fb.svg" alt="fb"></a></li>
+                        <li><a href="#"><img src="img/ins.svg" alt="ins"></a></li>
+                        <li><a href="#"><img src="img/tube.svg" alt="tube"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+</body>
+
+</html>
